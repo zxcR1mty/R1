@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои Dota-профили</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f172a; /* тёмно-синий фон */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .card {
+            background: #1e293b;
+            border-radius: 32px;
+            padding: 40px 30px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+            text-align: center;
+            border: 1px solid #334155;
+        }
+        h1 {
+            color: #f8fafc;
+            font-size: 28px;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+        .subtitle {
+            color: #94a3b8;
+            font-size: 16px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 20px;
+        }
+        .link-btn {
+            display: block;
+            width: 100%;
+            padding: 18px 0;
+            margin-bottom: 16px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            letter-spacing: 0.3px;
+        }
+        .link-btn:last-child {
+            margin-bottom: 0;
+        }
+        .link-btn:hover {
+            transform: scale(1.03);
+            filter: brightness(1.1);
+        }
+        .link-btn.stratz {
+            background: #3b82f6; /* синий */
+        }
+        .link-btn.dotabuff {
+            background: #22c55e; /* зелёный */
+        }
+        .link-btn.opendota {
+            background: #f97316; /* оранжевый */
+        }
+        .footer {
+            margin-top: 30px;
+            color: #64748b;
+            font-size: 14px;
+            border-top: 1px solid #334155;
+            padding-top: 20px;
+        }
+        .footer span {
+            color: #facc15;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>🎮 Мои Dota-профили</h1>
+        <div class="subtitle">Нажми на кнопку — перейдёшь к статистике</div>
+
+        <a href="https://stratz.com/players/1596319409" target="_blank" class="link-btn stratz">
+            🔹 STRATZ
+        </a>
+        <a href="https://ru.dotabuff.com/players/1596319409" target="_blank" class="link-btn dotabuff">
+            🟢 DOTABUFF
+        </a>
+        <a href="https://www.opendota.com/players/1596319409" target="_blank" class="link-btn opendota">
+            🟠 OPENDOTA
+        </a>
+
+        <div class="footer">
+            Сделано на <span>❤️</span> для TikTok
+        </div>
+    </div>
+</body>
+</html>
