@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R1 | Dota 2 Settings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #000;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Звёздный фон */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.2; }
+            100% { opacity: 1; }
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Шапка (как R1) */
+        .header {
+            padding: 80px 20px 40px;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            border: 1px solid #222;
+            border-radius: 20px;
+            font-size: 50px;
+            font-weight: 900;
+            color: #fff;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+        }
+
+        .header h1 {
+            font-size: 42px;
+            font-weight: 900;
+            letter-spacing: 8px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #888;
+            font-size: 14px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .subtitle2 {
+            color: #444;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Заголовки секций */
+        .section-title {
+            margin: 60px 0 30px;
+            font-size: 16px;
+            color: #888;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .section-title::before,
+        .section-title::after {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: #333;
+        }
+
+        /* Сетка карточек */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-decoration: none;
+            color: #fff;
+            transition: border-color 0.3s, transform 0.3s, background 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .card:hover {
+            border-color: #444;
+            background: #111;
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 900;
+            background: #141414;
+            border: 1px solid #222;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-desc {
+            font-size: 13px;
+            color: #888;
+            line-height: 1.5;
+        }
+
+        /* Блоки с контентом (как карточки внутри) */
+        .content-block {
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .content-block h3 {
+            font-size: 16px;
+            color: #ccc;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .mono-block {
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #a0a0a0;
+            line-height: 1.8;
+            word-break: break-all;
+            white-space: pre-wrap;
+        }
+
+        /* Бинды */
+        .bind-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #161616;
+        }
+
+        .bind-item:last-child {
+            border-bottom: none;
+        }
+
+        .bind-key {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #fff;
+            background: #1a1a1a;
+            padding: 4px 12px;
+            border-radius: 6px;
+            min-width: 110px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .bind-command {
+            font-family: 'Courier New', monospace;
+            color: #888;
+            font-size: 14px;
+            text-align: right;
+            flex: 1;
+            margin-left: 15px;
+        }
+
+        /* Кнопка копирования */
+        .copy-btn {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            width: 100%;
+            margin: 10px 0 30px;
+            transition: background 0.2s, border-color 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .copy-btn:hover {
+            background: #222;
+            border-color: #555;
+        }
+
+        .copy-btn:active {
+            transform: scale(0.98);
+        }
+
+        .footer {
+            text-align: center;
+            color: #333;
+            font-size: 12px;
+            padding: 40px 0 20px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Звёзды -->
+    <div class="stars" id="stars"></div>
+
+    <div class="container">
+        <!-- Шапка -->
+        <div class="header">
+            <div class="logo">R1</div>
+            <h1>DOTA 2</h1>
+            <div class="subtitle">Настройки и оптимизация</div>
+            <div class="subtitle2">Steam ID: 1596319409</div>
+        </div>
+
+        <!-- Ссылки на профили -->
+        <div class="section-title">Профили</div>
+        <div class="grid">
+            <a href="https://stratz.com/players/1596319409" target="_blank" class="card">
+                <div class="card-icon">S</div>
+                <div class="card-title">STRATZ</div>
+                <div class="card-desc">Подробная статистика, аналитика и мета</div>
+            </a>
+            <a href="https://ru.dotabuff.com/players/1596319409" target="_blank" class="card">
+                <div class="card-icon">D</div>
+                <div class="card-title">Dotabuff</div>
+                <div class="card-desc">История матчей, герои и винрейт</div>
+            </a>
+            <a href="https://www.opendota.com/players/1596319409" target="_blank" class="card">
+                <div class="card-icon">O</div>
+                <div class="card-title">OpenDota</div>
+                <div class="card-desc">Бесплатные API данные и графики</div>
+            </a>
+        </div>
+
+        <!-- Параметры запуска -->
+        <div class="section-title">Запуск</div>
+        <div class="content-block">
+            <h3>Параметры запуска</h3>
+            <div class="mono-block">
++exec autoexec.cfg -language russian -novr -dx11 -nohltv -noaafonts -processheap -noborder -novid -console -map dota -nohltv -prewarm
+            </div>
+        </div>
+
+        <!-- Бинды -->
+        <div class="section-title">Бинды</div>
+        <div class="content-block">
+            <h3>Управление</h3>
+            <div class="bind-item">
+                <span class="bind-key">Мышь 4</span>
+                <span class="bind-command">Выбрать героя</span>
+            </div>
+            <div class="bind-item">
+                <span class="bind-key">Alt-Мышь 5</span>
+                <span class="bind-command">Выбрать всех своих существ</span>
+            </div>
+            <div class="bind-item">
+                <span class="bind-key">CAPSLOCK</span>
+                <span class="bind-command">Следующее существо</span>
+            </div>
+            <div class="bind-item">
+                <span class="bind-key">TAB</span>
+                <span class="bind-command">1-я группа</span>
+            </div>
+            <div class="bind-item">
+                <span class="bind-key">Alt-Мышь 4</span>
+                <span class="bind-command">3-я группа</span>
+            </div>
+            <div class="bind-item">
+                <span class="bind-key">5</span>
+                <span class="bind-command">5-я группа</span>
+            </div>
+            <div class="bind-item">
+                <span class="bind-key">Мышь 5</span>
+                <span class="bind-command">6-я группа</span>
+            </div>
+        </div>
+
+        <!-- Autoexec -->
+        <div class="section-title">Autoexec</div>
+        <div class="content-block">
+            <h3>autoexec.cfg</h3>
+            <div class="mono-block" id="autoexec-content">
+dota_minimap_creep_scale 1.7
+dota_minimap_rune_size 700
+fps_max 0
+dota_unit_use_player_color 1;
+dota_friendly_color 0 255 0;
+dota_enemy_color 0 0 255;
+map_enable_portrait_worlds 1
+-nojoy
+-high
+-noaafonts
+-dxlevel 100
+-heapsize 2097152
+            </div>
+        </div>
+        <button class="copy-btn" onclick="copyAutoexec()">Скопировать autoexec.cfg</button>
+
+        <div class="footer">Обновлено: Сентябрь 2026</div>
+    </div>
+
+    <script>
+        // Генерация звёзд
+        const starsContainer = document.getElementById('stars');
+        const starsCount = 150;
+        for (let i = 0; i < starsCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 2 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.animationDuration = (Math.random() * 2 + 1) + 's';
+            starsContainer.appendChild(star);
+        }
+
+        function copyAutoexec() {
+            const text = document.getElementById('autoexec-content').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Autoexec.cfg скопирован в буфер обмена!');
+            }).catch(err => {
+                alert('Ошибка копирования: ' + err);
+            });
+        }
+    </script>
+</body>
+</html>
